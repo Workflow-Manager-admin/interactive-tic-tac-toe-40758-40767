@@ -1,104 +1,128 @@
 /* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --primary: #1a73e8;
+  --secondary: #e8f0fe;
+  --accent: #ff7043;
+
+  --bg-primary: #fff;
+  --bg-secondary: #e8f0fe;
+  --text-primary: #2d333a;
+  --text-secondary: #5f6368;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --button-bg: var(--primary);
+  --button-text: #fff;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
+/* Remove previous app styles, add Tic Tac Toe minimalistic layout styles */
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+.ttt-app-bg {
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.ttt-main-container {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(26,115,232,0.04);
+  padding: 36px 28px 24px 28px;
+  min-width: 320px;
+  max-width: 95vw;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.ttt-title {
+  margin-bottom: 16px;
+  color: var(--primary);
+  font-size: 2.15rem;
+  font-weight: 700;
+  letter-spacing: .01em;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+.ttt-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 18px 0 18px 0;
+}
+
+.ttt-board-row {
+  display: flex;
+}
+
+.ttt-square {
+  width: 62px;
+  height: 62px;
+  margin: 2px;
+  font-size: 2.1rem;
   font-weight: 600;
+  border: 2px solid var(--border-color);
+  background: #fff;
+  color: var(--accent);
+  border-radius: 10px;
+  transition: background 0.12s, box-shadow 0.12s;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.ttt-square:hover:not(:disabled) {
+  background: var(--secondary);
+  border-color: var(--primary);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.ttt-square:disabled {
+  background: #f3f3f3;
+  color: #dadada;
+  cursor: default;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ttt-winner {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 700;
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+.ttt-status {
+  color: var(--accent);
+  font-size: 1.18rem;
+  font-weight: 500;
+  min-height: 32px;
+  margin-bottom: 10px;
+  text-align: center;
 }
+
+.ttt-restart-btn {
+  margin-top: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 34px;
+  cursor: pointer;
+  transition: background 0.14s, box-shadow 0.13s;
+  box-shadow: 0 1px 4px rgba(26,115,232,0.09);
+  letter-spacing: .025em;
+}
+.ttt-restart-btn:hover,
+.ttt-restart-btn:focus {
+  background: #ff855e;
+}
+
+@media (max-width: 480px) {
+  .ttt-main-container { padding: 16px 4px 18px 4px; min-width: 0; }
+  .ttt-title { font-size: 1.4rem; }
+  .ttt-square { width: 43px; height: 43px; font-size: 1.2rem;}
+  .ttt-restart-btn { font-size: 0.97rem; padding: 7px 18px;}
+}
+
